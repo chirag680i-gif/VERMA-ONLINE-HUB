@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Verma Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f3f4f6; color:#111827; margin:0; padding:0; }
+      .container { max-width:1100px; margin:24px auto; padding:20px; }
+      .card { background:white; border-radius:12px; padding:18px; box-shadow:0 4px 18px rgba(16,24,40,0.06); }
+      .btn { display:inline-block; padding:10px 14px; border-radius:8px; text-decoration:none; cursor:pointer; }
+      .btn-primary { background:#4f46e5; color:white; border:none; padding:10px 14px; border-radius:8px; }
+      .btn-green { background:#10b981; color:white; border:none; padding:10px 14px; border-radius:8px; }
+      input, select, textarea { width:100%; padding:10px; border:1px solid #e5e7eb; border-radius:8px; box-sizing:border-box; }
+      .grid { display:grid; gap:16px; }
+      @media(min-width:700px){ .two { grid-template-columns: 1fr 420px; } }
+      img.qr { max-width:220px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); }
+      header.sitehead { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
+      header.sitehead h1 { margin:0; font-size:20px; }
+      footer { text-align:center; color:#6b7280; font-size:13px; margin-top:20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="sitehead">
+        <div>
+          <h1>Verma Hub</h1>
+          <div style="color:#6b7280;font-size:13px;">RTO • Insurance • Licence • RC Transfer</div>
+        </div>
+        <div>
+          <div style="text-align:right;color:#111827;font-weight:600">+91 62802 09797</div>
+          <div style="font-size:13px;color:#6b7280">chirag680i@gmail.com</div>
+        </div>
+      </header>
+
+      <div id="root"></div>
+
+      <footer>© 2025 Verma Hub — Built with ❤️</footer>
+    </div>
+
+    <!-- React + Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+    const {{ useState }} = React;
+
+    function VermaHub() {{
+      const [pw, setPw] = useState("");
+      const [ok, setOk] = useState(false);
+      const validPasswords = ["RAHUL9797", "ADMIN2025", "STAFF1234"];
+
+      if (!ok) {{
+        return (
+          <div className="card" style={{maxWidth:520, margin:"0 auto"}}>
+            <h2 style={{marginTop:0}}>Portal Login</h2>
+            <p style={{color:"#6b7280", marginTop:4}}>Enter password or scan QR</p>
+            <input type="password" placeholder="Password" value={{pw}} onChange={{e=>setPw(e.target.value)}} style={{marginTop:12}} />
+            <button className="btn-primary" style={{width:"100%", marginTop:12}} onClick={{() => {{
+              if (validPasswords.includes(pw)) setOk(true);
+              else alert("Wrong password");
+            }}}>Login</button>
+
+            <div style={{textAlign:"center", marginTop:10, color:"#6b7280"}}>OR</div>
+
+            <div style={{display:"flex", gap:10, marginTop:12, alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
+              <img src="./assets/qr.png" alt="QR" className="qr" style={{cursor:"pointer"}} onClick={{() => {{
+                setOk(true);
+                alert("QR scanned — logged in (simulation).");
+              }}} />
+              <div style={{fontSize:13,color:"#374151", fontWeight:600}}>Scan QR to Login</div>
+            </div>
+          </div>
+        );
+      }}
+
+      return (
+        <div>
+          <section className="card grid two">
+            <div>
+              <h2 style={{marginTop:0, fontSize:28}}>Get your vehicle paperwork done — fast & online</h2>
+              <p style={{color:"#6b7280"}}>RC transfers, insurance renewals, driving licence services, duplicate documents and more. Simple forms, transparent pricing and WhatsApp support.</p>
+
+              <div style={{marginTop:12, display:"flex", gap:8}}>
+                <a className="btn-primary" href="#contact">Start now</a>
+                <a className="btn" href="#services" style={{padding:"10px 14px", border:"1px solid #e5e7eb"}}>See services</a>
+              </div>
+
+              <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:8, marginTop:14}}>
+                <div className="card" style={{padding:10, textAlign:"center"}}><div style={{fontWeight:700}}>1000+</div><div style={{fontSize:12,color:"#6b7280"}}>Completed orders</div></div>
+                <div className="card" style={{padding:10, textAlign:"center"}}><div style={{fontWeight:700}}>24/7</div><div style={{fontSize:12,color:"#6b7280"}}>WhatsApp support</div></div>
+                <div className="card" style={{padding:10, textAlign:"center"}}><div style={{fontWeight:700}}>Trusted</div><div style={{fontSize:12,color:"#6b7280"}}>Secure payments</div></div>
+              </div>
+            </div>
+
+            <div className="card">
+              <h3 style={{marginTop:0}}>Quick order</h3>
+              <p style={{color:"#6b7280", fontSize:13}}>Fill basic details — we'll contact you on WhatsApp to complete the process.</p>
+              <form onSubmit={{e => e.preventDefault()}} style={{marginTop:10}}>
+                <input placeholder="Full name" required />
+                <input placeholder="Phone (WhatsApp)" required style={{marginTop:8}} />
+                <select required style={{marginTop:8}}>
+                  <option value="">Select service</option>
+                  <option>RC Transfer</option>
+                  <option>Insurance Renewal</option>
+                  <option>Driving Licence</option>
+                  <option>Duplicate RC / NOC</option>
+                </select>
+                <textarea placeholder="Brief details (reg. no., city)" rows="3" style={{marginTop:8}}></textarea>
+                <div style={{display:"flex", gap:8, marginTop:8}}>
+                  <button className="btn-primary" type="submit" style={{flex:1}}>Request callback</button>
+                  <a className="btn" href="https://wa.me/916280209797?text=Hi%20Verma%20Hub" style={{flex:1, textAlign:"center", padding:"10px 14px", border:"1px solid #e5e7eb"}}>Message on WhatsApp</a>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section id="services" className="card" style={{marginTop:18}}>
+            <h3>Services</h3>
+            <p style={{color:"#6b7280"}}>Common services we handle end-to-end.</p>
+            <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:12, marginTop:12}}>
+              {["RC Transfer","Insurance Renewal","Driving Licence","Duplicate RC / NOC"].map(s => (
+                <div key={s} className="card" style={{padding:12}}>
+                  <div style={{fontWeight:700}}>{s}</div>
+                  <div style={{color:"#6b7280", marginTop:6}}>{s==="RC Transfer" ? "Owner transfer, document filing, RTO follow-up." : s==="Insurance Renewal" ? "Compare & renew policies online." : s==="Driving Licence" ? "New DL, learner, duplicate or renewal." : "Lost RC, apply for duplicate or NOC."}</div>
+                  <div style={{marginTop:8}}><a href="#contact" style={{color:"#4f46e5"}}>Get this service →</a></div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="prices" className="card" style={{marginTop:18}}>
+            <h3>Pricing (example)</h3>
+            <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:12, marginTop:12}}>
+              <div className="card" style={{padding:12}}><div style={{fontWeight:700}}>RC Transfer</div><div style={{color:"#6b7280", marginTop:6}}>Starts from ₹799 + RTO fees</div></div>
+              <div className="card" style={{padding:12}}><div style={{fontWeight:700}}>Insurance Renewal</div><div style={{color:"#6b7280", marginTop:6}}>From ₹499 (policy dependent)</div></div>
+              <div className="card" style={{padding:12}}><div style={{fontWeight:700}}>Duplicate RC</div><div style={{color:"#6b7280", marginTop:6}}>From ₹699 + govt charges</div></div>
+            </div>
+          </section>
+
+          <section id="about" className="card" style={{marginTop:18}}>
+            <h3>About Verma Hub</h3>
+            <p style={{color:"#6b7280"}}>Small, trusted team helping customers across cities to complete RTO & vehicle paperwork without multiple visits. We handle forms, document verification and follow-ups so you don’t have to.</p>
+          </section>
+
+          <section id="print" className="card" style={{marginTop:18}}>
+            <h3>Print Portal</h3>
+            <p style={{color:"#6b7280"}}>Download or generate common RTO-related documents, receipts, and forms.</p>
+            <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:12, marginTop:12}}>
+              <div className="card" style={{padding:12}}>
+                <div style={{fontWeight:700}}>Acknowledgement Slip</div>
+                <a className="btn-primary" href="./assets/acknowledgement.pdf" download style="display:block; margin-top:8px;">Download</a>
+              </div>
+              <div className="card" style={{padding:12}}>
+                <div style={{fontWeight:700}}>Insurance Copy</div>
+                <a className="btn-primary" href="./assets/acknowledgement.pdf" download style="display:block; margin-top:8px;">Download</a>
+              </div>
+              <div className="card" style={{padding:12}}>
+                <div style={{fontWeight:700}}>RC Transfer Receipt</div>
+                <a className="btn-primary" href="./assets/acknowledgement.pdf" download style="display:block; margin-top:8px;">Download</a>
+              </div>
+            </div>
+          </section>
+
+          <section id="payment" className="card" style={{marginTop:18, textAlign:"center"}}>
+            <h3>UPI Payment</h3>
+            <p style={{color:"#6b7280"}}>Scan and pay using any UPI app.</p>
+            <div style={{marginTop:12}}><img src="./assets/qr.png" alt="QR" className="qr" style={{cursor:"pointer"}} onClick={() => alert('Scan this QR with your UPI App to pay. UPI ID: 6280209797@naviaxis')}} /></div>
+            <div style={{marginTop:10, fontWeight:700}}>CHIRAG VERMA</div>
+            <div style={{color:"#6b7280"}}>UPI ID: 6280209797@naviaxis</div>
+          </section>
+
+          <section id="contact" className="card" style={{marginTop:18}}>
+            <h3>Contact</h3>
+            <div style={{marginTop:6}}>Phone / WhatsApp: <strong>+91 62802 09797</strong></div>
+            <div style={{marginTop:4}}>Email: <strong>chirag680i@gmail.com</strong></div>
+            <div style={{marginTop:8}}>Working hours: Mon–Sat, 9:00–19:00</div>
+            <div style={{display:"flex", gap:8, marginTop:12}}>
+              <a className="btn" href="tel:+916280209797">Call</a>
+              <a className="btn btn-green" href="https://wa.me/916280209797">WhatsApp</a>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<VermaHub />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
